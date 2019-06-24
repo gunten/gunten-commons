@@ -9,7 +9,7 @@ import org.apache.rocketmq.remoting.common.RemotingHelper;
  * @author <a href="mailto:mm_8023@hotmail.com">gunten<a/>
  * 2019/5/24
  */
-public class MQProducerDemo {
+public class SyncProducerDemo {
 
     public static void main(String[] args) throws Exception {
 

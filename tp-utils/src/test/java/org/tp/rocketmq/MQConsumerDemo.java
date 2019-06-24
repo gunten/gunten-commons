@@ -7,6 +7,7 @@ import org.apache.rocketmq.client.consumer.listener.MessageListenerConcurrently;
 import org.apache.rocketmq.client.exception.MQClientException;
 import org.apache.rocketmq.common.consumer.ConsumeFromWhere;
 import org.apache.rocketmq.common.message.MessageExt;
+import org.apache.rocketmq.remoting.common.RemotingHelper;
 
 import java.io.UnsupportedEncodingException;
 import java.util.List;
@@ -30,7 +31,7 @@ public class MQConsumerDemo {
                 System.out.println(Thread.currentThread().getName() + " 收到新消息: ");
                 for(MessageExt me:msgs){
                     try {
-                        System.out.println(new String(me.getBody(),"utf-8"));
+                        System.out.println(new String(me.getBody(), RemotingHelper.DEFAULT_CHARSET));
                     } catch (UnsupportedEncodingException e) {
                         e.printStackTrace();
                     }
@@ -41,7 +42,7 @@ public class MQConsumerDemo {
 
         consumer.start();
 
-        System.out.println("Consumer Started.");
+        System.out.println("Consumer Started.%n");
     }
 
 }
