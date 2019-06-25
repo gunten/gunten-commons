@@ -1,4 +1,4 @@
-package org.tp.rocketmq;
+package org.tp.rocketmq.producer;
 
 import org.apache.rocketmq.client.producer.DefaultMQProducer;
 import org.apache.rocketmq.client.producer.MessageQueueSelector;
@@ -28,6 +28,8 @@ public class OrderedProducerDemo {
             //Create a message instance, specifying topic, tag and message body.
             Message msg = new Message("TopicTest", tags[i % tags.length], "KEY" + i,
                     ("Hello RocketMQ " + i).getBytes(RemotingHelper.DEFAULT_CHARSET));
+
+            /** 这里是队列选择器 ，还有一种MessageSelector  消息选择器*/
             SendResult sendResult = producer.send(msg, new MessageQueueSelector() {
                 @Override
                 public MessageQueue select(List<MessageQueue> mqs, Message msg, Object arg) {
