@@ -3,10 +3,7 @@ package org.tp.zip;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.StringUtils;
 
-import java.io.File;
-import java.io.FileOutputStream;
-import java.io.IOException;
-import java.io.InputStream;
+import java.io.*;
 import java.nio.charset.Charset;
 import java.util.Enumeration;
 import java.util.zip.ZipEntry;
@@ -31,9 +28,7 @@ public class ZipTool {
      */
     public static void unpackZip(File zip, File outputDir, String charsetName) throws IOException {
 
-        FileOutputStream out = null;
-        InputStream in = null;
-
+        InputStream in;
         Charset charset = StringUtils.isNotBlank(charsetName) ?
                 Charset.forName(charsetName) : Charset.forName("utf8");
 
@@ -48,7 +43,7 @@ public class ZipTool {
             while (entriesData.hasMoreElements()) {
                 ZipEntry entry = entriesData.nextElement();
                 in = zipFileData.getInputStream(entry);
-                String filePath = " ";
+                String filePath;
                 if (outputDir == null) {
                     filePath = zip.getParentFile().getPath() + File.separator + entry.getName();
                 } else {
@@ -58,29 +53,19 @@ public class ZipTool {
                 if (file.isDirectory()) {
                     continue;
                 }
-                out = new FileOutputStream(filePath);
-                int len = -1;
-                byte[] bytes = new byte[1024];
-                while ((len = in.read(bytes)) != -1) {
-                    out.write(bytes, 0, len);
+                try (OutputStream out = new FileOutputStream(filePath)) {
+                    int len = -1;
+                    byte[] bytes = new byte[1024];
+                    while ((len = in.read(bytes)) != -1) {
+                        out.write(bytes, 0, len);
+                    }
+                    out.flush();
                 }
-                out.flush();
             }
 
 
         } catch (Exception e) {
             throw e;
-        } finally {
-            try {
-                if (out != null) {
-                    out.close();
-                }
-                if (in != null) {
-                    in.close();
-                }
-            } catch (IOException e) {
-                log.warn("ZipTool close source err", e);
-            }
         }
     }
 
