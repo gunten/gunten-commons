@@ -341,13 +341,14 @@ public class ExportExcelUtil<T>{
         HSSFFont font = workbook.createFont();
         font.setBold(true);
         font.setFontName("宋体");
-        font.setColor(HSSFColor.WHITE.index);
+        font.setColor(HSSFColor.HSSFColorPredefined.WHITE.getIndex());
         font.setFontHeightInPoints((short) 11);
         // 把字体应用到当前的样式
         style.setFont(font);
         // 生成并设置另一个样式
         HSSFCellStyle style2 = workbook.createCellStyle();
-        style2.setFillForegroundColor(HSSFColor.WHITE.index);
+//        style2.setFillForegroundColor(HSSFColor.WHITE.index);
+        style2.setFillForegroundColor(HSSFColor.HSSFColorPredefined.WHITE.getIndex());
         style2.setFillPattern(FillPatternType.SOLID_FOREGROUND);
         style2.setBorderBottom(BorderStyle.THIN);
         style2.setBorderLeft(BorderStyle.THIN);
