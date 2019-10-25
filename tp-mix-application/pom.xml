@@ -86,6 +86,19 @@
             </exclusions>
         </dependency>
 
+        <dependency>
+            <groupId>com.github.binarywang</groupId>
+            <artifactId>wx-java-mp-spring-boot-starter</artifactId>
+            <version>3.5.4.B</version>
+        </dependency>
+
+        <!--腾讯云人脸核身-->
+        <dependency>
+            <groupId>com.tencentcloudapi</groupId>
+            <artifactId>tencentcloud-sdk-java</artifactId>
+            <!-- 请到https://search.maven.org/search?q=tencentcloud-sdk-java查询最新版本 -->
+            <version>3.0.98</version>
+        </dependency>
     </dependencies>
 
     <build>

@@ -56,6 +56,7 @@ public class MixApplication {
 //                    System.err.println("监听到事件 ： " + event.getClass().getSimpleName());
 //                })
                 .run(args)
-                .close();
+//                .close()
+                ;
     }
 }
