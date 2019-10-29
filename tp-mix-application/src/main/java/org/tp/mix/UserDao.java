@@ -3,6 +3,7 @@ package org.tp.mix;
 import org.springframework.stereotype.Component;
 import org.tp.mix.vo.User;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -16,7 +17,9 @@ import java.util.List;
 @Component
 public class UserDao {
     public List<User> findAll() {
-        return null;
+        List list =new ArrayList<>();
+        list.add(new User(3,"saveuser", 12,"@163.com"));
+        return list ;
     }
 
     public User save(User user) {

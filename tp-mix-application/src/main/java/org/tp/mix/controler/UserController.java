@@ -55,7 +55,7 @@ public class UserController implements UserControllerApi{
 
     @ApiOperation(value="修改用户-测试1", notes="测试application/json形式提交参数")
     @RequestMapping(path="/{id}", method=RequestMethod.PUT)
-    public User update1(@ApiParam(value="用户idd") @PathVariable Long id, @RequestBody User user) {
+    public User update1(@ApiParam(value="用户id") @PathVariable Long id, @RequestBody User user) {
         User temp = userDao.findOne(id);
         if(temp != null) {
             temp.setName(user.getName());
