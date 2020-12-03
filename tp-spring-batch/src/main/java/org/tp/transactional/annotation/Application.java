@@ -1,13 +1,14 @@
 package org.tp.transactional.annotation;
 
 import org.mybatis.spring.annotation.MapperScan;
+import org.springframework.batch.core.configuration.annotation.EnableBatchProcessing;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.EnableAspectJAutoProxy;
-import org.springframework.transaction.annotation.EnableTransactionManagement;
 
-@SpringBootApplication
+@SpringBootApplication(scanBasePackages = "org.tp")
 @MapperScan("org.tp.transactional.annotation.mapper")
+@EnableBatchProcessing
 @EnableAspectJAutoProxy(exposeProxy = true, proxyTargetClass = true)
 public class Application {
 
