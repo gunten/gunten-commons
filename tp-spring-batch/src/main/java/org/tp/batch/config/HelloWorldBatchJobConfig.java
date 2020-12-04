@@ -9,6 +9,8 @@ import org.springframework.batch.core.configuration.annotation.JobBuilderFactory
 import org.springframework.batch.core.configuration.annotation.StepBuilderFactory;
 import org.springframework.batch.core.configuration.annotation.StepScope;
 import org.springframework.batch.core.launch.support.RunIdIncrementer;
+import org.springframework.batch.core.repository.JobRepository;
+import org.springframework.batch.core.repository.support.JobRepositoryFactoryBean;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -36,10 +38,10 @@ public class HelloWorldBatchJobConfig {
      *
      * @return
      */
-    @Bean //(name = "helloWorldJob")
+    @Bean
     public Job helloWorldJob() throws Exception {
         return jobBuilderFactory.get("helloWorldJob")
-                .incrementer(new RunIdIncrementer()) //使每个job的运行id都唯 可以重复执行job
+                .incrementer(new RunIdIncrementer()) //使每个job的运行id都唯 可以重复执行job ,see org.tp.batch.config.HelloWorldBatchJobConfig.helloWorldStep
                 .start(helloWorldStep()).build();
     }
 
@@ -51,6 +53,7 @@ public class HelloWorldBatchJobConfig {
     @Bean
     public Step helloWorldStep() {
         return stepBuilderFactory.get("helloWorldStep")
+                .allowStartIfComplete(true) //正式地使结束的任务可以再次运行
                 .<ReadData, WriteData>chunk(10)
                 .reader(mbReader())
                 .processor(processor())
