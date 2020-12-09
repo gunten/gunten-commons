@@ -1,5 +1,7 @@
 package org.tp.transactional.annotation.web;
 
+import org.apache.ibatis.session.ResultContext;
+import org.apache.ibatis.session.ResultHandler;
 import org.springframework.batch.core.Job;
 import org.springframework.batch.core.JobParameters;
 import org.springframework.batch.core.JobParametersBuilder;
@@ -44,6 +46,24 @@ public class UserController {
     public List<UserEntity> getUsers() {
         List<UserEntity> users = userMapper.getAll();
         return users;
+    }
+
+    @RequestMapping("/dynamicGetUser")
+    public void dynamicGetUser() {
+       /* userMapper.dynamicGetUser(new ResultHandler<UserEntity>() {
+            @Override
+            public void handleResult(ResultContext<? extends UserEntity> resultContext) {
+                UserEntity repDto = resultContext.getResultObject();
+                System.out.println(repDto);
+            }
+        });*/
+
+        // or
+        userMapper.dynamicGetUser(resultContext -> {
+            UserEntity repDto = resultContext.getResultObject();
+            System.out.println(repDto);
+        });
+
     }
 
     @RequestMapping("/getUser")

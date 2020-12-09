@@ -5,18 +5,24 @@
         <id column="id" property="id" jdbcType="BIGINT"/>
         <result column="userName" property="userName" jdbcType="VARCHAR"/>
         <result column="passWord" property="passWord" jdbcType="VARCHAR"/>
-        <result column="user_sex" property="userSex" javaType="org.tp.transactional.annotation.enums.UserSexEnum"/>
-        <result column="nick_name" property="nickName" jdbcType="VARCHAR"/>
+        <result column="userSex" property="userSex" javaType="org.tp.transactional.annotation.enums.UserSexEnum"/>
+        <result column="nickName" property="nickName" jdbcType="VARCHAR"/>
     </resultMap>
 
     <sql id="Base_Column_List">
-        id, userName, passWord, user_sex, nick_name
+        id, userName, passWord, userSex, nickName
     </sql>
 
     <select id="getAll" resultMap="BaseResultMap">
         SELECT
         <include refid="Base_Column_List"/>
         FROM users
+    </select>
+
+    <select id="dynamicGetUser" resultMap="BaseResultMap" resultSetType="FORWARD_ONLY" fetchSize="500">
+        SELECT
+        <include refid="Base_Column_List"/>
+        FROM users limit 200
     </select>
 
     <select id="getOne" parameterType="java.lang.Long" resultMap="BaseResultMap">
