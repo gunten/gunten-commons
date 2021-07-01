@@ -11,7 +11,8 @@
 		<module>tp-utils</module>
 		<module>tp-spring-batch</module>
 		<module>basic</module>
-	</modules>
+        <module>hello-spring-boot-starter</module>
+    </modules>
 	<packaging>pom</packaging>
 
 	<name>Twoplus's Commons Project</name>

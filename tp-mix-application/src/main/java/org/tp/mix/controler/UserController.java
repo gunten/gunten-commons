@@ -3,8 +3,10 @@ package org.tp.mix.controler;
 import io.swagger.annotations.*;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.context.ApplicationContext;
 import org.springframework.web.bind.annotation.*;
+import org.tp.SmsSender;
 import org.tp.annotation.autolog.AutoLog;
 import org.tp.annotation.autolog.LogLevelEnum;
 import org.tp.mix.event.BillOverdueEvent;
@@ -33,6 +35,14 @@ public class UserController implements UserControllerApi{
     private UserDao userDao;
     @Autowired
     private ApplicationContext applicationContext;
+
+    @Qualifier("aliYunSmsSender")
+    @Autowired
+    private SmsSender smsSender1;
+
+    @Qualifier("tencentSmsSender")
+    @Autowired
+    private SmsSender smsSender2;
 
     @ApiOperation(value="查询用户", notes="测试无请求参数的swagger-ui")
     @RequestMapping(method=RequestMethod.GET)
@@ -95,5 +105,13 @@ public class UserController implements UserControllerApi{
         userDao.delete(id);
         return Boolean.TRUE;
     }
+
+    @GetMapping("/sendSms/{context}")
+    public String sendSms(@PathVariable(value = "context") String context) {
+        smsSender1.send(context);
+        smsSender2.send(context);
+        return "send " + context;
+    }
+
 
 }

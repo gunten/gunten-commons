@@ -180,7 +180,7 @@
         </dependency>
 
         <!-- boot2.x底层客户端 改用Lettuce-->
-        <!-- 内有指定各种版本号       -->
+        <!-- 内有指定各种版本号
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-data-redis</artifactId>
@@ -195,7 +195,7 @@
             <groupId>redis.clients</groupId>
             <artifactId>jedis</artifactId>
         </dependency>
-
+        -->
         <!--html2pdf 工具-->
         <dependency>
             <groupId>org.xhtmlrenderer</groupId>

@@ -23,13 +23,13 @@ import java.util.concurrent.TimeUnit;
  * redis 工具类
  *
  **/
-@Component
+//@Component
 public class RedisUtil {
     /**
      * 注入redisTemplate bean
      * If you add a @Bean of your own of any of the auto-configured types it will replace the default (except in the case of RedisTemplate the exclusion is based on the bean name ‘redisTemplate’ not its type).
      */
-    @Resource
+//    @Resource
     private RedisTemplate<String,Object> redisTemplate;
 
     /**

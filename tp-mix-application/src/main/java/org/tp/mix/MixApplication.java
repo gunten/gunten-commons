@@ -1,5 +1,7 @@
 package org.tp.mix;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.builder.SpringApplicationBuilder;
 import org.springframework.boot.context.properties.EnableConfigurationProperties;
@@ -8,6 +10,8 @@ import org.springframework.context.event.SimpleApplicationEventMulticaster;
 import org.springframework.core.task.SimpleAsyncTaskExecutor;
 import org.springframework.scheduling.annotation.EnableAsync;
 import org.springframework.scheduling.concurrent.ThreadPoolTaskExecutor;
+import org.tp.EnableSms;
+import org.tp.SmsSender;
 import springfox.documentation.swagger2.annotations.EnableSwagger2;
 
 import java.util.concurrent.ThreadPoolExecutor;
@@ -16,8 +20,8 @@ import java.util.concurrent.ThreadPoolExecutor;
 @EnableConfigurationProperties
 @SpringBootApplication(scanBasePackages = {"org.tp"})
 @EnableAsync
+@EnableSms
 public class MixApplication {
-
 
     /**
      * 认为替换广播器 executor的方法达到事件异步效果
@@ -58,5 +62,6 @@ public class MixApplication {
                 .run(args)
 //                .close()
                 ;
+
     }
 }

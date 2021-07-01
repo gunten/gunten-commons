@@ -1,0 +1,11 @@
+sms:
+  aliyun:
+    pass-word: 12345
+    user-name: java金融
+    sign: 阿里云
+    url: http://aliyun.com/send
+  tencent:
+    pass-word: 6666
+    user-name: java金融
+    sign: 腾讯云
+    url: http://tencent.com/send
