@@ -21,12 +21,13 @@ public class MQConsumerDemo {
     public static void main(String[] args) throws InterruptedException, MQClientException {
         DefaultMQPushConsumer consumer = new DefaultMQPushConsumer("ConsumerGroupName");
         consumer.setConsumeFromWhere(ConsumeFromWhere.CONSUME_FROM_FIRST_OFFSET);
-        consumer.setNamesrvAddr("47.98.101.251:9876");
+        consumer.setNamesrvAddr("localhost:9876");
 
         consumer.subscribe("TopicTest", "*");
 
         consumer.registerMessageListener(new MessageListenerConcurrently() {
 
+            @Override
             public ConsumeConcurrentlyStatus consumeMessage(List<MessageExt> msgs, ConsumeConcurrentlyContext context) {
                 for(MessageExt me:msgs){
                     try {

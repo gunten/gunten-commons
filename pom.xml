@@ -10,6 +10,7 @@
 		<module>tp-mix-application</module>
 		<module>tp-utils</module>
 		<module>tp-spring-batch</module>
+		<module>basic</module>
 	</modules>
 	<packaging>pom</packaging>
 

@@ -14,7 +14,8 @@ public class SyncProducerDemo {
     public static void main(String[] args) throws Exception {
 
         DefaultMQProducer producer = new DefaultMQProducer("ProducerGroupName");
-        producer.setNamesrvAddr("47.98.101.251:9876");
+//        producer.setNamesrvAddr("47.98.101.251:9876");
+        producer.setNamesrvAddr("localhost:9876");
         producer.start();
 
         for (int i = 0; i < 5; i++){
