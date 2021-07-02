@@ -12,8 +12,8 @@ import org.tp.TencentSmsSenderImpl;
  * @author <a href="mailto:mm_8023@hotmail.com">gunten<a/>
  * 2021/7/1
  */
-@EnableConfigurationProperties(value = SmsProperties.class)
 @Configuration
+@EnableConfigurationProperties(value = SmsProperties.class)
 public class SmsAutoConfiguration  {
     /**
      *  阿里云发送短信的实现类
