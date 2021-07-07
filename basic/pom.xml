@@ -11,7 +11,7 @@
     <description>只论基础</description>
 
     <parent>
-        <groupId>org.twoplus</groupId>
+        <groupId>org.tp</groupId>
         <artifactId>gunten-commons</artifactId>
         <version>1.0.0-SNAPSHOT</version>
     </parent>

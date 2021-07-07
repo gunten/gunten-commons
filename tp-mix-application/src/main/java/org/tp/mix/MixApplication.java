@@ -1,5 +1,6 @@
 package org.tp.mix;
 
+import org.activiti.spring.boot.SecurityAutoConfiguration;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -16,9 +17,13 @@ import springfox.documentation.swagger2.annotations.EnableSwagger2;
 
 import java.util.concurrent.ThreadPoolExecutor;
 
+/**
+ * springboot2.0不能与activiti6.0.0直接集成使用，因为activiti6.0.0出来的时候springboot2.0还没有出来，
+ * activiti6.0.0 支持springboot1.2.6以上，2.0.0以下的版本。
+ */
 @EnableSwagger2
 @EnableConfigurationProperties
-@SpringBootApplication(scanBasePackages = {"org.tp"})
+@SpringBootApplication(scanBasePackages = {"org.tp"},exclude = SecurityAutoConfiguration.class)
 @EnableAsync
 @EnableSms
 public class MixApplication {
