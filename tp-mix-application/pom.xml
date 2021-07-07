@@ -86,11 +86,12 @@
             </exclusions>
         </dependency>
 
+        <!-- 微信公众号后台工具
         <dependency>
             <groupId>com.github.binarywang</groupId>
             <artifactId>wx-java-mp-spring-boot-starter</artifactId>
             <version>3.5.4.B</version>
-        </dependency>
+        </dependency>-->
 
         <!--腾讯云人脸核身-->
         <dependency>
@@ -106,11 +107,11 @@
             <version>0.0.1-SNAPSHOT</version>
         </dependency>
 
-        <!--<dependency>
+        <dependency>
             <groupId>org.activiti</groupId>
             <artifactId>activiti-spring-boot-starter-basic</artifactId>
             <version>6.0.0</version>
-        </dependency>-->
+        </dependency>
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-data-jpa</artifactId>
