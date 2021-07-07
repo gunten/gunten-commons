@@ -6,7 +6,8 @@ spring:
   batch:
     initialize-schema: embedded
     job:
-      enabled: true
+#      enabled: true
+      enabled: false
 
   datasource:
     driver-class-name: com.mysql.cj.jdbc.Driver
@@ -16,4 +17,8 @@ spring:
     url: jdbc:mysql://localhost:3306/test?serverTimezone=UTC&useSSL=false&allowPublicKeyRetrieval=true
     username: root
     password: root
+
+  activiti:
+    ####校验流程文件，默认校验resources下的processes文件夹里的流程文件
+    check-process-definitions: false
 

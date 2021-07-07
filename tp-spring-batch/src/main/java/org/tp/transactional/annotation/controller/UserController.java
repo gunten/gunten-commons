@@ -1,7 +1,5 @@
-package org.tp.transactional.annotation.web;
+package org.tp.transactional.annotation.controller;
 
-import org.apache.ibatis.session.ResultContext;
-import org.apache.ibatis.session.ResultHandler;
 import org.springframework.batch.core.Job;
 import org.springframework.batch.core.JobParameters;
 import org.springframework.batch.core.JobParametersBuilder;

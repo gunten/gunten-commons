@@ -9,7 +9,8 @@ import org.springframework.context.annotation.EnableAspectJAutoProxy;
 @SpringBootApplication(scanBasePackages = "org.tp")
 @MapperScan("org.tp.transactional.annotation.mapper")
 @EnableBatchProcessing
-@EnableAspectJAutoProxy(exposeProxy = true, proxyTargetClass = true)
+//@EnableAspectJAutoProxy(exposeProxy = true, proxyTargetClass = true)
+@EnableAspectJAutoProxy(exposeProxy = true)
 public class Application {
 
     public static void main(String[] args) {

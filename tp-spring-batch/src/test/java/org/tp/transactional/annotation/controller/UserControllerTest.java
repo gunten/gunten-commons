@@ -1,4 +1,4 @@
-package org.tp.transactional.annotation.web;
+package org.tp.transactional.annotation.controller;
 
 
 import org.junit.Before;
