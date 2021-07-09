@@ -4,12 +4,12 @@
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>com.tp</groupId>
-    <artifactId>spring-boot-batch</artifactId>
+    <artifactId>tp-spring-batch</artifactId>
     <version>1.0.0</version>
     <packaging>jar</packaging>
 
     <name>tp-spring-batch</name>
-    <description>Demo project for Spring Boot and mybatis</description>
+    <description>Demo project for mybatis</description>
 
     <parent>
         <groupId>org.tp</groupId>

@@ -9,9 +9,11 @@
     <packaging>jar</packaging>
 
     <name>tp-mix-application</name>
-    <description>Demo project include Spring-boot-swagger、Redis(Lettuce and Jedis client)
-        、Zookeeper、Sftp-tool
-
+    <description>Demo project includes
+        Spring-boot-swagger
+        Redis(Lettuce and Jedis client)
+        Zookeeper
+        Sftp-tool
     </description>
 
     <parent>
