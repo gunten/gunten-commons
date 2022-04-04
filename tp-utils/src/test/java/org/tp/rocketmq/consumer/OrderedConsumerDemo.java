@@ -6,9 +6,13 @@ import org.apache.rocketmq.client.consumer.listener.ConsumeOrderlyStatus;
 import org.apache.rocketmq.client.consumer.listener.MessageListenerOrderly;
 import org.apache.rocketmq.common.consumer.ConsumeFromWhere;
 import org.apache.rocketmq.common.message.MessageExt;
+import org.apache.rocketmq.remoting.common.RemotingHelper;
 
+import java.io.UnsupportedEncodingException;
 import java.util.List;
 import java.util.concurrent.atomic.AtomicLong;
+
+import static org.tp.rocketmq.MQConstant.NAME_SERVER_ADDR;
 
 /**
  * 2019/6/24
@@ -16,13 +20,15 @@ import java.util.concurrent.atomic.AtomicLong;
 public class OrderedConsumerDemo {
 
     public static void main(String[] args) throws Exception {
-        DefaultMQPushConsumer consumer = new DefaultMQPushConsumer("ConsumerGroupName");
+        DefaultMQPushConsumer consumer = new DefaultMQPushConsumer("ConsumerGroup-Test");
 
-        consumer.setConsumeFromWhere(ConsumeFromWhere.CONSUME_FROM_FIRST_OFFSET);
+        consumer.setConsumeFromWhere(ConsumeFromWhere.CONSUME_FROM_LAST_OFFSET);
 
-        consumer.setNamesrvAddr("47.98.101.251:9876");
+        consumer.setNamesrvAddr(NAME_SERVER_ADDR);
 
-        consumer.subscribe("TopicTest", "TagA || TagC || TagD");
+        consumer.subscribe("TopicTest", "TagA || TagC || TagB");
+
+        consumer.setMaxReconsumeTimes(-1);
 
         consumer.registerMessageListener(new MessageListenerOrderly() {
 
@@ -32,10 +38,16 @@ public class OrderedConsumerDemo {
                                                        ConsumeOrderlyContext context) {
                 context.setAutoCommit(true);//???
                 for (MessageExt msg : msgs) {
-                    System.out.println("consumeThread=" + Thread.currentThread().getName() + " queueId=" + msg.getQueueId() + ", content:" + new String(msg.getBody()));
+                    try {
+                        System.out.printf("线程：%-25s 收到新消息 %sms later from %s --- [%s] %n", Thread.currentThread().getName(),
+                                (System.currentTimeMillis() - msg.getStoreTimestamp()),
+                                msg.getTags(),
+                                new String(msg.getBody(), RemotingHelper.DEFAULT_CHARSET));
+                    } catch (UnsupportedEncodingException e) {
+                        e.printStackTrace();
+                    }
                 }
 
-//                System.out.printf(Thread.currentThread().getName() + " Receive New Messages: " + msgs + "%n");
                 this.consumeTimes.incrementAndGet();
                 /*if ((this.consumeTimes.get() % 2) == 0) {
                     return ConsumeOrderlyStatus.SUCCESS;
@@ -54,6 +66,6 @@ public class OrderedConsumerDemo {
 
         consumer.start();
 
-        System.out.printf("Consumer Started.");
+        System.out.println("OrderedConsumer Started.");
     }
 }

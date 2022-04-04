@@ -8,6 +8,8 @@ import org.apache.rocketmq.remoting.common.RemotingHelper;
 import java.util.ArrayList;
 import java.util.List;
 
+import static org.tp.rocketmq.MQConstant.NAME_SERVER_ADDR;
+
 /**
  * @author <a href="mailto:mm_8023@hotmail.com">gunten<a/>
  * 2019/6/25
@@ -16,18 +18,21 @@ public class BatchProducerDemo {
 
     public static void main(String[] args) throws Exception {
 
-        DefaultMQProducer producer = new DefaultMQProducer("ProducerGroupName");
-        producer.setNamesrvAddr("47.98.101.251:9876");
+        DefaultMQProducer producer = new DefaultMQProducer("ProducerGroup-Test");
+        producer.setNamesrvAddr(NAME_SERVER_ADDR);
         producer.start();
 
-        String topic = "TopicTest";
         List<Message> messages = new ArrayList<>();
-        messages.add(new Message(topic, "TagA", "OrderID001", "Hello world 0".getBytes()));
-        messages.add(new Message(topic, "TagA", "OrderID002", "Hello world 1".getBytes()));
-        messages.add(new Message(topic, "TagA", "OrderID003", "Hello world 2".getBytes()));
-        messages.add(new Message(topic, "TagA", "OrderID004", "Hello world 3".getBytes()));
+        for (int i = 0; i < 100; i++) {
+            String content = "Hello BatchMQ " + i;
+            Message message = new Message("TopicTest", "TagA", "OrderID" + i, content.getBytes(RemotingHelper.DEFAULT_CHARSET));
+
+            messages.add(message);
+        }
+
         try {
-            producer.send(messages);
+            SendResult result = producer.send(messages);
+            System.out.println("消息已发送：" + result);
         } catch (Exception e) {
             e.printStackTrace();
         }finally {
