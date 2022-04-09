@@ -2,8 +2,8 @@ package org.tp.batch;
 
 
 import org.springframework.batch.item.ItemProcessor;
-import org.tp.transactional.annotation.entity.ReadData;
-import org.tp.transactional.annotation.entity.WriteData;
+import org.tp.transactional.entity.ReadData;
+import org.tp.transactional.entity.WriteData;
 
 public class PersonItemProcessor implements ItemProcessor<ReadData, WriteData> {
 

@@ -1,15 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="org.tp.transactional.annotation.mapper.WriteMapper">
+<mapper namespace="org.tp.transactional.mapper.WriteMapper">
 
     <!-- 通用查询映射结果 -->
-    <resultMap id="BaseResultMap" type="org.tp.transactional.annotation.entity.WriteData">
+    <resultMap id="BaseResultMap" type="org.tp.transactional.entity.WriteData">
         <id column="id" property="id"/>
         <result column="no" property="no"/>
         <result column="name" property="name"/>
     </resultMap>
 
-    <insert id="setTargetData" parameterType="org.tp.transactional.annotation.entity.WriteData">
+    <insert id="setTargetData" parameterType="org.tp.transactional.entity.WriteData">
         insert into write_data (no, name) value (#{no}, #{name});
     </insert>
 </mapper>

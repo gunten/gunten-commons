@@ -15,8 +15,8 @@ import java.io.Serializable;
  * @author <a href="mailto:mm_8023@hotmail.com">gunten<a/>
  * 2019/1/29
  */
-//@Configuration
-//@AutoConfigureAfter(RedisAutoConfiguration.class)
+@Configuration
+@AutoConfigureAfter(RedisAutoConfiguration.class)
 public class RedisTemplateConf {
 
     /**
@@ -24,7 +24,7 @@ public class RedisTemplateConf {
      * @param redisConnectionFactory
      * @return
      */
-//    @Bean
+    @Bean
     public RedisTemplate<String, Serializable> redisCacheTemplate(RedisConnectionFactory redisConnectionFactory) {
         RedisTemplate<String, Serializable> template = new RedisTemplate<>();
         template.setKeySerializer(new StringRedisSerializer());

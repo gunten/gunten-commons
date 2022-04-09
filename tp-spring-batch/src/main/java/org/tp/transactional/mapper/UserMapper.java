@@ -1,13 +1,9 @@
-package org.tp.transactional.annotation.mapper;
+package org.tp.transactional.mapper;
 
 import java.util.List;
 
-import org.apache.ibatis.annotations.Options;
-import org.apache.ibatis.annotations.ResultType;
-import org.apache.ibatis.annotations.Select;
-import org.apache.ibatis.mapping.ResultSetType;
 import org.apache.ibatis.session.ResultHandler;
-import org.tp.transactional.annotation.entity.UserEntity;
+import org.tp.transactional.entity.UserEntity;
 
 public interface UserMapper {
 

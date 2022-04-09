@@ -14,8 +14,8 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.annotation.Rollback;
 import org.springframework.test.context.junit4.SpringRunner;
 
-import org.tp.transactional.annotation.entity.UserEntity;
-import org.tp.transactional.annotation.service.TxTestService;
+import org.tp.transactional.entity.UserEntity;
+import org.tp.transactional.service.TxTestService;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest
@@ -25,7 +25,7 @@ public class SpringTransactionalAnnotationTest {
     public TestName testName = new TestName();
 
     @Autowired
-    private UserMapper UserMapper;
+    private org.tp.transactional.mapper.UserMapper UserMapper;
 
     @Autowired
     private TxTestService txTestService;

@@ -1,4 +1,4 @@
-package org.tp.transactional.annotation.controller;
+package org.tp.transactional.controller;
 
 import org.springframework.batch.core.Job;
 import org.springframework.batch.core.JobParameters;
@@ -9,8 +9,8 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-import org.tp.transactional.annotation.entity.UserEntity;
-import org.tp.transactional.annotation.mapper.UserMapper;
+import org.tp.transactional.entity.UserEntity;
+import org.tp.transactional.mapper.UserMapper;
 
 import java.util.Date;
 import java.util.List;

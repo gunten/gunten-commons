@@ -1,6 +1,6 @@
-package org.tp.transactional.annotation.mapper;
+package org.tp.transactional.mapper;
 
-import org.tp.transactional.annotation.entity.ReadData;
+import org.tp.transactional.entity.ReadData;
 
 import java.util.List;
 

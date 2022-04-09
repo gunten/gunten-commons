@@ -9,14 +9,12 @@ import org.springframework.batch.core.configuration.annotation.JobBuilderFactory
 import org.springframework.batch.core.configuration.annotation.StepBuilderFactory;
 import org.springframework.batch.core.configuration.annotation.StepScope;
 import org.springframework.batch.core.launch.support.RunIdIncrementer;
-import org.springframework.batch.core.repository.JobRepository;
-import org.springframework.batch.core.repository.support.JobRepositoryFactoryBean;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.tp.batch.PersonItemProcessor;
-import org.tp.transactional.annotation.entity.ReadData;
-import org.tp.transactional.annotation.entity.WriteData;
+import org.tp.transactional.entity.ReadData;
+import org.tp.transactional.entity.WriteData;
 
 
 @Configuration

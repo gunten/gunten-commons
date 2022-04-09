@@ -1,8 +1,6 @@
-package org.tp.transactional.annotation.entity;
+package org.tp.transactional.entity;
 
 import java.io.Serializable;
-
-import org.tp.transactional.annotation.enums.UserSexEnum;
 
 public class UserEntity implements Serializable {
 

@@ -8,7 +8,7 @@ import org.springframework.context.annotation.EnableAspectJAutoProxy;
 
 
 @SpringBootApplication(scanBasePackages = "org.tp")
-@MapperScan("org.tp.transactional.annotation.mapper")
+@MapperScan("org.tp.transactional.mapper")
 @EnableBatchProcessing
 @EnableAspectJAutoProxy(exposeProxy = true, proxyTargetClass = true)
 public class BatchApplication {

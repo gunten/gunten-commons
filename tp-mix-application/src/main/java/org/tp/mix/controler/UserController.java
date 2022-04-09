@@ -12,7 +12,7 @@ import org.tp.annotation.autolog.LogLevelEnum;
 import org.tp.mix.event.BillOverdueEvent;
 import org.tp.mix.dto.NotPayBillDTO;
 import org.tp.mix.vo.User;
-import org.tp.mix.UserDao;
+import org.tp.mix.dal.service.impl.UserDao;
 import springfox.documentation.annotations.ApiIgnore;
 
 import java.util.Date;

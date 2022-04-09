@@ -1,4 +1,4 @@
-package org.tp.transactional.annotation.service;
+package org.tp.transactional.service;
 
 public interface TxTestService {
 

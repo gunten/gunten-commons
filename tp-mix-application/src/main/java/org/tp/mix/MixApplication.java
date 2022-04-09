@@ -1,18 +1,15 @@
 package org.tp.mix;
 
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Qualifier;
+import org.mybatis.spring.annotation.MapperScan;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.autoconfigure.security.servlet.SecurityAutoConfiguration;
 import org.springframework.boot.builder.SpringApplicationBuilder;
 import org.springframework.boot.context.properties.EnableConfigurationProperties;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.event.SimpleApplicationEventMulticaster;
-import org.springframework.core.task.SimpleAsyncTaskExecutor;
 import org.springframework.scheduling.annotation.EnableAsync;
 import org.springframework.scheduling.concurrent.ThreadPoolTaskExecutor;
 import org.tp.EnableSms;
-import org.tp.SmsSender;
 import springfox.documentation.swagger2.annotations.EnableSwagger2;
 
 import java.util.concurrent.ThreadPoolExecutor;
@@ -20,6 +17,7 @@ import java.util.concurrent.ThreadPoolExecutor;
 
 @EnableSwagger2
 @EnableConfigurationProperties
+@MapperScan("org.tp.mix.dal.mapper")
 @SpringBootApplication(scanBasePackages = {"org.tp"},exclude = SecurityAutoConfiguration.class)
 @EnableAsync
 @EnableSms

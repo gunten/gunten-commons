@@ -1,4 +1,4 @@
-package org.tp.transactional.annotation.entity;
+package org.tp.transactional.entity;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;

@@ -1,7 +1,7 @@
 package org.tp.batch;
 
 import org.springframework.jdbc.core.RowMapper;
-import org.tp.transactional.annotation.entity.ReadData;
+import org.tp.transactional.entity.ReadData;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;

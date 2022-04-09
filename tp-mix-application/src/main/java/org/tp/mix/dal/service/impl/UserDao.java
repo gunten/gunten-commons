@@ -1,4 +1,4 @@
-package org.tp.mix;
+package org.tp.mix.dal.service.impl;
 
 import org.springframework.stereotype.Component;
 import org.tp.mix.vo.User;

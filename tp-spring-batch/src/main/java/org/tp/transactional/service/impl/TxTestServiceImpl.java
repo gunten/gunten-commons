@@ -1,4 +1,4 @@
-package org.tp.transactional.annotation.service.impl;
+package org.tp.transactional.service.impl;
 
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.aop.framework.AopContext;
@@ -8,9 +8,9 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.transaction.interceptor.TransactionAspectSupport;
-import org.tp.transactional.annotation.entity.UserEntity;
-import org.tp.transactional.annotation.mapper.UserMapper;
-import org.tp.transactional.annotation.service.TxTestService;
+import org.tp.transactional.entity.UserEntity;
+import org.tp.transactional.mapper.UserMapper;
+import org.tp.transactional.service.TxTestService;
 
 
 @Service

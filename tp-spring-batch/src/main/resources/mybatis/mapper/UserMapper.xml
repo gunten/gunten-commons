@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper namespace="org.tp.transactional.annotation.mapper.UserMapper">
-    <resultMap id="BaseResultMap" type="org.tp.transactional.annotation.entity.UserEntity">
+<mapper namespace="org.tp.transactional.mapper.UserMapper">
+    <resultMap id="BaseResultMap" type="org.tp.transactional.entity.UserEntity">
         <id column="id" property="id" jdbcType="BIGINT"/>
         <result column="userName" property="userName" jdbcType="VARCHAR"/>
         <result column="passWord" property="passWord" jdbcType="VARCHAR"/>
-        <result column="userSex" property="userSex" javaType="org.tp.transactional.annotation.enums.UserSexEnum"/>
+        <result column="userSex" property="userSex" javaType="org.tp.transactional.enums.UserSexEnum"/>
         <result column="nickName" property="nickName" jdbcType="VARCHAR"/>
     </resultMap>
 
@@ -32,7 +32,7 @@
         WHERE id = #{id}
     </select>
 
-    <insert id="insert" parameterType="org.tp.transactional.annotation.entity.UserEntity">
+    <insert id="insert" parameterType="org.tp.transactional.entity.UserEntity">
         INSERT INTO
         users
         (id,userName,passWord,user_sex)
@@ -40,7 +40,7 @@
         (#{id}, #{userName}, #{passWord}, #{userSex})
     </insert>
 
-    <update id="update" parameterType="org.tp.transactional.annotation.entity.UserEntity">
+    <update id="update" parameterType="org.tp.transactional.entity.UserEntity">
         UPDATE
         users
         SET
