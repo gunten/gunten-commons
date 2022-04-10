@@ -6,7 +6,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.ApplicationArguments;
 import org.springframework.boot.ApplicationRunner;
 import org.springframework.data.redis.core.StringRedisTemplate;
-import org.springframework.stereotype.Component;
 import org.tp.mix.dal.model.City;
 import org.tp.mix.dal.service.ICityService;
 
@@ -14,9 +13,10 @@ import java.util.List;
 
 
 /**
+ * 启动 load缓存
  **/
 @Slf4j
-@Component
+//@Component
 public class LoadDataApplicationRunner implements ApplicationRunner {
 
     @Autowired

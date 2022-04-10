@@ -11,11 +11,12 @@
     <name>tp-mix-application</name>
     <description>Demo project includes
         Spring-boot-swagger
-        Redis(Lettuce and Jedis client)
+        Redis(Lettuce 、 Jedis 、redisson client)
         Zookeeper
         Sftp-tool
         Kafka(2022-3)
         Mybatis-plus
+
     </description>
 
     <parent>
@@ -31,6 +32,7 @@
         <java.version>1.8</java.version>
         <swagger.version>3.0.0</swagger.version>
         <mybatis.plus.version>3.5.1</mybatis.plus.version>
+        <redisson.version>3.17.0</redisson.version>
     </properties>
 
     <dependencies>
@@ -145,10 +147,13 @@
             <artifactId>mysql-connector-java</artifactId>
             <scope>runtime</scope>
         </dependency>
+
         <dependency>
-            <groupId>io.micrometer</groupId>
-            <artifactId>micrometer-core</artifactId>
+            <groupId>org.redisson</groupId>
+            <artifactId>redisson-spring-boot-starter</artifactId>
+            <version>${redisson.version}</version>
         </dependency>
+
         <dependency>
             <groupId>javax.validation</groupId>
             <artifactId>validation-api</artifactId>
