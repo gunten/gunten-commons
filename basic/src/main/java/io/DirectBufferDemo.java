@@ -3,7 +3,7 @@ package io;
 import java.nio.ByteBuffer;
 
 /**
- * @author <a href="mailto:mm_8023@hotmail.com">gunten<a/>
+ * @author gunten
  * 2019/5/13
  */
 public class DirectBufferDemo {
