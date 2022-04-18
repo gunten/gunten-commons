@@ -16,7 +16,7 @@
         Sftp-tool
         Kafka(2022-3)
         Mybatis-plus
-
+        sharding-sphere (Datasource未生效)
     </description>
 
     <parent>
@@ -148,10 +148,30 @@
             <scope>runtime</scope>
         </dependency>
 
+        <!--        用的时候再开启-->
+<!--        <dependency>-->
+<!--            <groupId>org.redisson</groupId>-->
+<!--            <artifactId>redisson-spring-boot-starter</artifactId>-->
+<!--            <version>${redisson.version}</version>-->
+<!--        </dependency>-->
+
+        <!--   DIY SPI     -->
         <dependency>
-            <groupId>org.redisson</groupId>
-            <artifactId>redisson-spring-boot-starter</artifactId>
-            <version>${redisson.version}</version>
+            <groupId>org.tp</groupId>
+            <artifactId>basic</artifactId>
+            <version>1.0</version>
+        </dependency>
+
+        <!--        shardingsphere-->
+        <dependency>
+            <groupId>org.apache.shardingsphere</groupId>
+            <artifactId>shardingsphere-jdbc-core</artifactId>
+            <version>5.1.0</version>
+        </dependency>
+        <dependency>
+            <groupId>com.zaxxer</groupId>
+            <artifactId>HikariCP</artifactId>
+            <version>4.0.3</version>
         </dependency>
 
         <dependency>

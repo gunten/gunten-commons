@@ -11,7 +11,7 @@ import org.tp.mix.event.BillOverdueEvent;
 import java.util.Date;
 
 /**
- * @author <a href="mailto:mm_8023@hotmail.com">gunten<a/>
+ * @author gunten
  * 2019/4/12
  */
 @Component
