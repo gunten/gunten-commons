@@ -15,12 +15,12 @@ interface IA{
 
 public class proxyExam {
 
-    public class MyIA implements IA{
-        @Override
-        public String getHelloName() {
-            return null;
-        }
-    }
+//    public class MyIA implements IA{
+//        @Override
+//        public String getHelloName() {
+//            return null;
+//        }
+//    }
 
     public static void main(String[] args) throws Exception{
         IA ia = (IA) createObject(IA.class.getName() + "$getHelloName=Abc");
