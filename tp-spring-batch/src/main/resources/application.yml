@@ -1,13 +1,17 @@
+server:
+  port: 8090
+
 mybatis:
   config-locations: classpath:mybatis/mybatis-config.xml
   mapper-locations: classpath:mybatis/mapper/*.xml
   type-aliases-package: org.tp.transactional.annotation.entity
 spring:
   batch:
-    initialize-schema: embedded
     job:
 #      enabled: true
       enabled: false
+    jdbc:
+      initialize-schema: embedded
 
   datasource:
     driver-class-name: com.mysql.cj.jdbc.Driver
