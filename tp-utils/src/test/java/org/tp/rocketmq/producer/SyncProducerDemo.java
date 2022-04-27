@@ -26,7 +26,7 @@ public class SyncProducerDemo {
         for (int i = 0; i < 5; i++){
             try {
                 //Message(String topic, String tags, String keys, byte[] body)
-                Message msg = new Message("TopicTest", "TagB", "OrderID188", ("Hello MQ:" + i).getBytes(RemotingHelper.DEFAULT_CHARSET));
+                Message msg = new Message("TopicTest", "TagB", "", ("Hello MQ:" + i).getBytes(RemotingHelper.DEFAULT_CHARSET));
 
                 SendResult sendResult = producer.send(msg);
                 System.out.printf("发送结果: %s%n", sendResult);
