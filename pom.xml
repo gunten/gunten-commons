@@ -37,9 +37,10 @@
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter</artifactId>
 			<exclusions>
+				<!-- 排除自带的logback依赖 -->
 				<exclusion>
-					<artifactId>log4j-to-slf4j</artifactId>
-					<groupId>org.apache.logging.log4j</groupId>
+					<groupId>org.springframework.boot</groupId>
+					<artifactId>spring-boot-starter-logging</artifactId>
 				</exclusion>
 			</exclusions>
 		</dependency>
