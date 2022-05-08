@@ -16,7 +16,7 @@ public class KafkaProducerNew {
     private KafkaProducerNew() {
         Properties props = new Properties();
         // Kafka服务端的主机名和端口号
-        props.put(ProducerConfig.BOOTSTRAP_SERVERS_CONFIG, "172.20.224.1:9092");
+        props.put(ProducerConfig.BOOTSTRAP_SERVERS_CONFIG, "192.168.33.10:9092");
         // key序列化
         props.put(ProducerConfig.VALUE_SERIALIZER_CLASS_CONFIG, StringSerializer.class.getName());
         // value序列化

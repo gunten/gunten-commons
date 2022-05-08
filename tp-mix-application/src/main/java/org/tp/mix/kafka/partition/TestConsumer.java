@@ -11,7 +11,7 @@ import java.time.*;
 public class TestConsumer {
     public static void main(String args[]) {
         Properties props = new Properties();
-        props.setProperty("bootstrap.servers", "192.168.16.1:9092");
+        props.setProperty("bootstrap.servers", "192.168.33.10:9092");
         props.setProperty("group.id", "test-group");
         props.setProperty("enable.auto.commit", "true");
         props.setProperty("auto.offset.reset", "earliest");

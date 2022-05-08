@@ -11,11 +11,11 @@ public class KafkaConsumerNew {
 
     private static String group = "group-1";
 
-    private static String TOPIC = "test2";
+    private static String TOPIC = "test";
 
     private KafkaConsumerNew() {
         Properties props = new Properties();
-        props.put(ConsumerConfig.BOOTSTRAP_SERVERS_CONFIG, "192.168.100.249:9092");
+        props.put(ConsumerConfig.BOOTSTRAP_SERVERS_CONFIG, "192.168.33.10:9092");
         props.put(ConsumerConfig.GROUP_ID_CONFIG, group);
         props.put(ConsumerConfig.AUTO_OFFSET_RESET_CONFIG, "latest");
         props.put(ConsumerConfig.ENABLE_AUTO_COMMIT_CONFIG, "true"); // 自动commit
