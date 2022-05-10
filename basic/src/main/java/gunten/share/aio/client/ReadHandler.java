@@ -1,9 +1,10 @@
 package gunten.share.aio.client;
+
 import java.io.IOException;
-import java.io.UnsupportedEncodingException;
 import java.nio.ByteBuffer;
 import java.nio.channels.AsynchronousSocketChannel;
 import java.nio.channels.CompletionHandler;
+import java.nio.charset.StandardCharsets;
 import java.util.concurrent.CountDownLatch;
 public class ReadHandler implements CompletionHandler<Integer, ByteBuffer> {
 	private AsynchronousSocketChannel clientChannel;
@@ -19,11 +20,9 @@ public class ReadHandler implements CompletionHandler<Integer, ByteBuffer> {
 		buffer.get(bytes);
 		String body;
 		try {
-			body = new String(bytes,"UTF-8");
+			body = new String(bytes, StandardCharsets.UTF_8);
 			System.out.println("客户端收到结果:"+ body);
-		} catch (UnsupportedEncodingException e) {
-			e.printStackTrace();
-		}finally {
+		} finally {
 			try {
 				clientChannel.close();
 				latch.countDown();

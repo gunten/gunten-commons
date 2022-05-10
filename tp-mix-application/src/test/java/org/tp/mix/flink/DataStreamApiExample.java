@@ -17,7 +17,7 @@ import java.util.Random;
  * DataStreamApiExample
  *
  * @author
- * @date 2019/6/27
+ * 2019/6/27
  **/
 public class DataStreamApiExample {
 
