@@ -146,4 +146,15 @@ public class TableApiTest {
         env.execute("sqlTest");
     }
 
+    @Test
+    public void explainTest() throws Exception {
+
+        //创建临时视图
+        tableEnv.createTemporaryView("student", table);
+        String sql = "select name, sum(score) as total from student group by name";
+        Table t = tableEnv.sqlQuery(sql);
+
+        System.out.println(t.explain());
+    }
+
 }
