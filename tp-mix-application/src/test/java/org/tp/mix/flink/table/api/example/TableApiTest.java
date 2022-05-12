@@ -11,6 +11,7 @@ import org.apache.flink.types.Row;
 import org.junit.Before;
 import org.junit.Test;
 
+import java.util.Arrays;
 import java.util.List;
 
 import static org.apache.flink.table.api.Expressions.$;
@@ -30,7 +31,7 @@ public class TableApiTest {
         env = StreamExecutionEnvironment.getExecutionEnvironment();
         env.setRuntimeMode(RuntimeExecutionMode.STREAMING).setParallelism(1);
 
-        List<Student> list = List.of(
+        List<Student> list = Arrays.asList(
                 new Student("a", 60L),
                 new Student("a", 80L),
                 new Student("a", 70L),
