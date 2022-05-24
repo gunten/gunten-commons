@@ -169,20 +169,6 @@
 <!--            <version>${redisson.version}</version>-->
 <!--        </dependency>-->
 
-        <!--   DIY SPI     -->
-        <dependency>
-            <groupId>org.tp</groupId>
-            <artifactId>basic</artifactId>
-            <version>1.0</version>
-            <!--    不去除会跟flink table冲突        -->
-            <exclusions>
-                <exclusion>
-                    <artifactId>calcite-core</artifactId>
-                    <groupId>org.apache.calcite</groupId>
-                </exclusion>
-            </exclusions>
-        </dependency>
-
         <dependency>
             <groupId>javax.validation</groupId>
             <artifactId>validation-api</artifactId>

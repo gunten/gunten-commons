@@ -1,4 +1,4 @@
-package org.tp.mix.spi.parser;
+package org.tp.spi.parser;
 
 
 import gunten.spi.example.Parser;

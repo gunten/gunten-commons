@@ -12,6 +12,7 @@
     <description>Demo project for mybatis
         Spring-batch
         Forest
+        SPI
     </description>
 
     <parent>
@@ -72,6 +73,21 @@
             <artifactId>forest-spring-boot-starter</artifactId>
             <version>${forest.version}</version>
         </dependency>
+
+        <!--   DIY SPI     -->
+        <dependency>
+            <groupId>org.tp</groupId>
+            <artifactId>basic</artifactId>
+            <version>1.0</version>
+            <!--    不去除会跟flink table冲突        -->
+            <exclusions>
+                <exclusion>
+                    <artifactId>calcite-core</artifactId>
+                    <groupId>org.apache.calcite</groupId>
+                </exclusion>
+            </exclusions>
+        </dependency>
+
     </dependencies>
 
     <build>

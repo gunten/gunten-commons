@@ -1,4 +1,4 @@
-package org.tp.mix.controler;
+package org.tp.controler;
 
 import gunten.spi.example.ParserManager;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -12,7 +12,7 @@ import java.io.File;
  *  SPI 测试入口
  **/
 @RestController
-    @RequestMapping("/parser")
+@RequestMapping("/parser")
 public class ParserController {
 
 
