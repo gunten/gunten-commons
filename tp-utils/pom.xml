@@ -21,6 +21,7 @@
         <commons-net.version>3.6</commons-net.version>
         <org.apache.zookeeper.version>3.4.13</org.apache.zookeeper.version>
         <slf4j.log4j12.version>2.0.0-alpha6</slf4j.log4j12.version>
+        <gson.version>2.9.1</gson.version>
     </properties>
 
     <dependencies>
@@ -198,6 +199,13 @@
                     <groupId>com.google.guava</groupId>
                 </exclusion>
             </exclusions>
+        </dependency>
+
+        <!-- Gson -->
+        <dependency>
+            <groupId>com.google.code.gson</groupId>
+            <artifactId>gson</artifactId>
+            <version>${gson.version}</version>
         </dependency>
 
         <!-- boot2.x底层客户端 改用Lettuce-->
