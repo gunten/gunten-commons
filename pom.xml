@@ -13,6 +13,7 @@
 		<module>basic</module>
         <module>hello-spring-boot-starter</module>
 		<module>tp-activiti6-springboot-demo</module>
+        <module>springboot-nacos-quickstart</module>
     </modules>
 	<packaging>pom</packaging>
 
