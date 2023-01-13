@@ -14,7 +14,7 @@
     <name>tp-utils</name>
 
     <properties>
-        <org.apache.poi.version>4.1.0</org.apache.poi.version>
+        <org.apache.poi.version>5.2.1</org.apache.poi.version>
         <pinyin4j.version>2.5.1</pinyin4j.version>
         <javax.mail.version>1.6.2</javax.mail.version>
         <com.alibaba.fastjson.version>1.2.51</com.alibaba.fastjson.version>
