@@ -35,6 +35,13 @@
             <groupId>io.netty</groupId>
             <artifactId>netty-all</artifactId>
         </dependency>
+
+        <!--    引入guava    -->
+        <dependency>
+            <groupId>org.tp</groupId>
+            <artifactId>tp-utils</artifactId>
+            <version>1.0.0-SNAPSHOT</version>
+        </dependency>
     </dependencies>
 
     <build>
