@@ -6,5 +6,5 @@ package org.tp.rocketmq;
  */
 public class MQConstant {
 
-    public static final String NAME_SERVER_ADDR = "192.168.33.10:9876";
+    public static final String NAME_SERVER_ADDR = "192.168.56.3:9876";
 }
