@@ -3,6 +3,7 @@ package org.tp.easy.excel;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.tp.excel.easyexcel.Excel;
 
 /**
  * @author gunten

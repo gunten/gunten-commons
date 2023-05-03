@@ -1,4 +1,4 @@
-package org.tp.easy.excel;
+package org.tp.excel.easyexcel;
 
 import java.io.IOException;
 import java.io.OutputStream;

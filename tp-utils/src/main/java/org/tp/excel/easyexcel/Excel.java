@@ -1,4 +1,4 @@
-package org.tp.easy.excel;
+package org.tp.excel.easyexcel;
 
 import java.lang.annotation.ElementType;
 import java.lang.annotation.Retention;
