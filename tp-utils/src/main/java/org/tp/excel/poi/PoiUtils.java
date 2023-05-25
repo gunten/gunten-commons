@@ -10,9 +10,12 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.io.InputStream;
 import java.net.URLEncoder;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.Map;
 
 /**
+ *
  */
 public class PoiUtils {
 
@@ -77,7 +80,7 @@ public class PoiUtils {
      * @param exeFormula  是否执行公式
      * @param response
      */
-    public static void templateToExcelHtml(InputStream inputStream, Map<String, ImmutablePair<Double, String>> dataMap, boolean exeFormula, HttpServletResponse response) throws IOException {
+    public static <T> void templateToExcelHtml(InputStream inputStream, Map<String, ImmutablePair<T, String>> dataMap, boolean exeFormula, HttpServletResponse response) throws IOException {
         //获取模板文件，Workbook，Sheet
         Workbook workbook = WorkbookFactory.create(inputStream);
         Sheet sheet = workbook.getSheetAt(0);
@@ -98,13 +101,25 @@ public class PoiUtils {
         for (Row row : sheet) {
             for (Cell cell : row) {
                 if (cell.getCellType() == CellType.STRING && cell.getStringCellValue().startsWith(TODO_PREFIX)) {
-                    ImmutablePair<Double, String> immutablePair = dataMap.get(cell.getStringCellValue());
+                    ImmutablePair<T, String> immutablePair = dataMap.get(cell.getStringCellValue());
                     if (immutablePair == null) {
                         continue;
                     }
                     //单元格赋值
                     if (immutablePair.getLeft() != null) {
-                        cell.setCellValue(immutablePair.getLeft());
+                        if (immutablePair.getLeft() instanceof Double) {
+                            cell.setCellValue(((Double) immutablePair.getLeft()));
+                        } else if (immutablePair.getLeft() instanceof String) {
+                            cell.setCellValue(((String) immutablePair.getLeft()));
+                        } else if (immutablePair.getLeft() instanceof Boolean) {
+                            cell.setCellValue(((Boolean) immutablePair.getLeft()));
+                        } else if (immutablePair.getLeft() instanceof Date) {
+                            cell.setCellValue(((Date) immutablePair.getLeft()));
+                        } else if (immutablePair.getLeft() instanceof Calendar) {
+                            cell.setCellValue(((Calendar) immutablePair.getLeft()));
+                        }
+                    } else {
+                        cell.setBlank();
                     }
                     //添加批注
                     if (StringUtils.isNotBlank(immutablePair.getRight())) {
@@ -120,7 +135,7 @@ public class PoiUtils {
         }
 
         //处理公式
-        if(exeFormula){
+        if (exeFormula) {
             FormulaEvaluator evaluator = workbook.getCreationHelper().createFormulaEvaluator();
             for (Row row : sheet) {
                 for (Cell cell : row) {

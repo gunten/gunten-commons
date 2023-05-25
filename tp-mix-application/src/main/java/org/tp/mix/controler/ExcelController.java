@@ -36,13 +36,23 @@ public class ExcelController {
         return dataMap;
     }
 
-    private Map<String, ImmutablePair<Double, String>> getDataMap3() {
-        Map<String, ImmutablePair<Double, String>> dataMap = new HashMap<>();
-        dataMap.put("todo_1", new ImmutablePair<>(null, "{\"todo\":\"todo_11\"}"));
-        dataMap.put("todo_2", new ImmutablePair<>(null, "{\"todo\":\"todo_22\"}"));
-        dataMap.put("todo_3", new ImmutablePair<>(null, "{\"todo\":\"todo_33\"}"));
-        dataMap.put("todo_4", new ImmutablePair<>(null, "{\"todo\":\"todo_44\"}"));
-        dataMap.put("todo_5", new ImmutablePair<>(null, "{\"todo\":\"todo_55\"}"));
+    private Map<String, ImmutablePair<Boolean, String>> getDataMap3() {
+        Map<String, ImmutablePair<Boolean, String>> dataMap = new HashMap<>();
+        dataMap.put("todo_1", new ImmutablePair<Boolean, String>(null, "{\"todo\":\"todo_11\"}"));
+        dataMap.put("todo_2", new ImmutablePair<Boolean, String>(false, "{\"todo\":\"todo_22\"}"));
+        dataMap.put("todo_3", new ImmutablePair<Boolean, String>(Boolean.TRUE, "{\"todo\":\"todo_33\"}"));
+        dataMap.put("todo_4", new ImmutablePair<Boolean, String>(null, "{\"todo\":\"todo_44\"}"));
+        dataMap.put("todo_5", new ImmutablePair<Boolean, String>(null, "{\"todo\":\"todo_55\"}"));
+        return dataMap;
+    }
+
+    private Map<String, ImmutablePair<String, String>> getDataMap4() {
+        Map<String, ImmutablePair<String, String>> dataMap = new HashMap<>();
+        dataMap.put("todo_1", new ImmutablePair<String, String>(null, "{\"todo\":\"todo_11\"}"));
+        dataMap.put("todo_2", new ImmutablePair<String, String>("hahaha", "{\"todo\":\"todo_22\"}"));
+        dataMap.put("todo_3", new ImmutablePair<String, String>(null, "{\"todo\":\"todo_33\"}"));
+        dataMap.put("todo_4", new ImmutablePair<String, String>(null, "{\"todo\":\"todo_44\"}"));
+        dataMap.put("todo_5", new ImmutablePair<String, String>("某个公式", "{\"todo\":\"todo_55\"}"));
         return dataMap;
     }
 
@@ -55,7 +65,8 @@ public class ExcelController {
     @RequestMapping("/show")
     public void show(HttpServletResponse response) throws IOException {
         String path = this.getClass().getClassLoader().getResource("excel1_1.xlsx").getPath();
-        PoiUtils.templateToExcelHtml(new FileInputStream(path), getDataMap2(), true, response);
+//        PoiUtils.templateToExcelHtml(new FileInputStream(path), getDataMap2(), true, response);
+        PoiUtils.templateToExcelHtml(new FileInputStream(path), getDataMap4(), true, response);
     }
 
     @RequestMapping("/export")

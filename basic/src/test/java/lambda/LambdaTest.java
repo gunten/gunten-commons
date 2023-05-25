@@ -14,6 +14,7 @@ public class LambdaTest {
 
         //2、lambda表达式
         Collections.sort(names, (a, b) -> b.compareTo(a));
+        Collections.sort(names, Comparator.reverseOrder());
 //        Collections.sort(names, Comparator.reverseOrder());
     }
 }

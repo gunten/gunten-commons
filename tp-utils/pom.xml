@@ -12,6 +12,7 @@
     <packaging>jar</packaging>
     <artifactId>tp-utils</artifactId>
     <name>tp-utils</name>
+    <description>如引入报错 可以去除slf4j-log4j12</description>
 
     <properties>
         <org.apache.poi.version>4.1.0</org.apache.poi.version>
@@ -111,6 +112,20 @@
             <groupId>cn.afterturn</groupId>
             <artifactId>easypoi-spring-boot-starter</artifactId>
             <version>${easypoi.version}</version>
+            <exclusions>
+                <exclusion>
+                    <artifactId>poi-ooxml-schemas</artifactId>
+                    <groupId>org.apache.poi</groupId>
+                </exclusion>
+                <exclusion>
+                    <artifactId>poi-ooxml</artifactId>
+                    <groupId>org.apache.poi</groupId>
+                </exclusion>
+                <exclusion>
+                    <artifactId>poi</artifactId>
+                    <groupId>org.apache.poi</groupId>
+                </exclusion>
+            </exclusions>
         </dependency>
 
         <dependency>
