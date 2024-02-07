@@ -1,6 +1,7 @@
 package org.tp.excel.easypoi.html;
 
 import com.google.common.xml.XmlEscapers;
+import org.apache.commons.lang3.StringUtils;
 import org.apache.poi.hssf.usermodel.HSSFRichTextString;
 import org.apache.poi.hssf.usermodel.HSSFWorkbook;
 import org.apache.poi.ss.usermodel.*;
@@ -73,10 +74,33 @@ public class CellValueHelper {
                 double value = cell.getNumericCellValue();
                 CellStyle style = cell.getCellStyle();
                 DecimalFormat format = new DecimalFormat();
-                String temp = style.getDataFormatString();
+                String dataFormatString = style.getDataFormatString();
+                if (StringUtils.isBlank(dataFormatString)) {
+                    return String.valueOf(value);
+                }
                 // 单元格设置成常规
-                if (temp.equals("General")) {
-                    format.applyPattern("#");
+                switch (dataFormatString) {
+                    case "General":
+                        format.applyPattern("#");
+                        break;
+                    case "0.00":
+                    case "#,##0.00":
+                        format.applyPattern("0.##");
+                        break;
+                    case "0.000_":
+                        format.applyPattern("0.###");
+                        break;
+                    case "0%":
+                        format.applyPattern("#%");
+                        break;
+                    case "0.00%":
+                        format.applyPattern("#.##%");
+                        break;
+                    case "0.000%":
+                        format.applyPattern("#.###%");
+                        break;
+                    default:
+                        break;
                 }
                 return format.format(value);
             } else if (CellType.STRING == cell.getCellType()) {
