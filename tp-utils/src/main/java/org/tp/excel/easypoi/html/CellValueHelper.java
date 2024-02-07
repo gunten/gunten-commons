@@ -84,10 +84,12 @@ public class CellValueHelper {
                         format.applyPattern("#");
                         break;
                     case "0.00":
+                    case "0.00_ ":
                     case "#,##0.00":
                         format.applyPattern("0.##");
                         break;
-                    case "0.000_":
+                    case "0.000":
+                    case "0.000_ ":
                         format.applyPattern("0.###");
                         break;
                     case "0%":
