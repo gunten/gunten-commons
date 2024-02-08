@@ -86,6 +86,7 @@ public class CellValueHelper {
                     case "0.00":
                     case "0.00_ ":
                     case "#,##0.00":
+                    case "0.00_);[Red]\\(0.00\\)":
                         format.applyPattern("0.##");
                         break;
                     case "0.000":
