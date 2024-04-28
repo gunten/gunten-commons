@@ -1,4 +1,4 @@
-package org.tp.mix.temp;
+package DG;
 
 import java.util.LinkedList;
 
@@ -23,7 +23,7 @@ public class Graph {
 
     public void topoSortByDFS() {
         // 先构建逆邻接表，边 s->t 表示，s 依赖于 t，t 先于 s
-        LinkedList<Integer> inverseAdj[] = new LinkedList[v];
+        LinkedList[] inverseAdj = new LinkedList[v];
         for (int i = 0; i < v; ++i) { // 申请空间
             inverseAdj[i] = new LinkedList<>();
         }
@@ -42,7 +42,7 @@ public class Graph {
 
         boolean[] visited = new boolean[v];
         for (int i = 0; i < v; ++i) { // 深度优先遍历图
-            if (visited[i] == false) {
+            if (!visited[i]) {
                 visited[i] = true;
                 dfs(i, inverseAdj, visited);
             }
@@ -53,7 +53,7 @@ public class Graph {
 
         for (int i = 0; i < inverseAdj[vertex].size(); ++i) {
             int w = inverseAdj[vertex].get(i);
-            if (visited[w] == true) continue;
+            if (visited[w]) continue;
             visited[w] = true;
             dfs(w, inverseAdj, visited);
         } // 先把 vertex 这个顶点可达的所有顶点都打印出来之后，再打印它自己
