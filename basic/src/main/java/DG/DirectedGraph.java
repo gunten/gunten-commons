@@ -17,9 +17,10 @@ public class DirectedGraph {
     // 记录图中是否有环
     private boolean hasCycle = false;
     // 记录后序遍历结果
-    List<Integer> postorder = new ArrayList<>();
+    private List<Integer> postorder = new ArrayList<>();
 
-    static Stack trace;
+    private Stack<Integer> trace = new Stack<>();
+    private List<List<Integer>> rings = new ArrayList<>();
 
     public DirectedGraph(int v) {
         this.v = v;
@@ -46,38 +47,104 @@ public class DirectedGraph {
     public boolean hasRing() {
         onPath = new boolean[v];
         visited = new boolean[v];
-        trace =new Stack<Integer>();
         for (int i = 0; i < v; i++) {
             // 遍历图中的所有节点
-            DFSTraverse(this.adj, i);
+            traverseByDFS2(this.adj, i);
         }
         return hasCycle;
     }
 
-    public List findOrder() {
+    /**
+     * 拓扑排序
+     *
+     * @return
+     */
+    public List topologicalSortingByDFS() {
         // 进行 DFS 遍历
         onPath = new boolean[v];
         visited = new boolean[v];
         postorder = new ArrayList<>(v);
 
         for (int i = 0; i < v; i++) {
-            DFSTraverse(this.adj, i);
+            traverseByDFS(this.adj, i);
         }
         // 先保证图中无环
         if (hasCycle) {
             return Collections.emptyList();
         }
-        // 将后序遍历结果反转，转化成 int[] 类型
+        // 将后序遍历结果反转
         Collections.reverse(postorder);
         return postorder;
     }
 
-    /* 深度优先搜索 图遍历框架 */
-    private void DFSTraverse(List<Integer>[] adj, int s) {
+    /**
+     * 找到所有环
+     *
+     * @param adj
+     * @param s
+     */
+    private void traverseByDFS2(List<Integer>[] adj, int s) {
+
         if (onPath[s]) {
-            // 出现环
+            // 出现环, 路径回退到onPath节点即为环链路
             hasCycle = true;
-            System.err.println(trace);
+            Integer temp;
+            int i = trace.size() - 1;
+            List ring = new ArrayList();
+            do {
+                temp = trace.get(i--);
+                ring.add(temp);
+            } while (temp != s && i >= 0);
+            Collections.reverse(ring);
+            rings.add(ring);
+
+            return;
+        }
+
+        // 虽然访问过，但只要当前路径不存在就继续遍历
+        if (visited[s] && trace.contains(s)) {
+            visited[s] = false;
+        }
+        if (visited[s]) {
+//            if (!trace.contains(s)) {
+//                visited[s] = false;
+//            } else {
+                return;
+//            }
+        }
+
+        // 前序遍历代码位置
+        visited[s] = true;
+        onPath[s] = true;
+        trace.add(s);
+        for (int t : adj[s]) {
+            traverseByDFS2(adj, t);
+        }
+        // 后序遍历代码位置
+        postorder.add(s);
+        onPath[s] = false;
+        trace.pop();
+    }
+
+    /**
+     * 图遍历框架 找到首个环
+     *
+     * @param adj
+     * @param s
+     */
+    private void traverseByDFS(List<Integer>[] adj, int s) {
+        if (onPath[s]) {
+            // 出现环, 路径回退到onPath节点即为环链路
+            hasCycle = true;
+            Integer temp;
+            List ring = new ArrayList();
+            int i = trace.size() - 1;
+            do {
+                temp = trace.get(i--);
+                ring.add(temp);
+            } while (temp != s && i >= 0);
+            Collections.reverse(ring);
+            rings.add(ring);
         }
 
         if (visited[s] || hasCycle) {
@@ -87,10 +154,9 @@ public class DirectedGraph {
         // 前序遍历代码位置
         visited[s] = true;
         onPath[s] = true;
-
         trace.add(s);
         for (int t : adj[s]) {
-            DFSTraverse(adj, t);
+            traverseByDFS(adj, t);
         }
         // 后序遍历代码位置
         postorder.add(s);
@@ -101,24 +167,36 @@ public class DirectedGraph {
     public static void main(String[] args) {
 //        DirectedGraph ringGraph1 = DirectedGraph.createRingGraph1();
 //        ringGraph1.print();
-//        System.out.println("has ring :" + ringGraph1.hasRing());
-//        ringGraph1.findOrder().forEach(System.out::println);
+//        if (ringGraph1.hasRing()) {
+//            ringGraph1.rings.forEach(System.out::println);
+//            System.out.println();
+//        }
 //        System.out.println("-------------------------------");
 
-//        DirectedGraph ringGraph2 = DirectedGraph.createRingGraph2();
-//        ringGraph2.print();
-//        System.out.println("has ring :" + ringGraph2.hasRing());
-//        System.out.println("-------------------------------");
-//
-        DirectedGraph ringGraph3 = DirectedGraph.createRingGraph3();
-        ringGraph3.print();
-        System.out.println("has ring :" + ringGraph3.hasRing());
+        DirectedGraph ringGraph2 = DirectedGraph.createRingGraph2();
+        ringGraph2.print();
+        if (ringGraph2.hasRing()) {
+            ringGraph2.rings.forEach(t -> System.out.print(t + "->"));
+            System.out.println();
+        }
         System.out.println("-------------------------------");
-//
+
+//        DirectedGraph ringGraph3 = DirectedGraph.createRingGraph3();
+//        ringGraph3.print();
+//        if (ringGraph3.hasRing()) {
+//            ringGraph3.rings.forEach(t -> System.out.print(t + "->"));
+//            System.out.println();
+//        }
+//        System.out.println("-------------------------------");
+
 //        DirectedGraph dag1 = DirectedGraph.createDAG1();
 //        dag1.print();
-//        System.out.println("has ring :" + dag1.hasRing());
-//        dag1.findOrder().forEach(System.out::println);
+//        if (dag1.hasRing()) {
+//            dag1.rings.forEach(t -> System.out.print(t + "->"));
+//            System.out.println();
+//        } else {
+//            dag1.topologicalSortingByDFS().forEach(t -> System.out.print(t + "-"));
+//        }
 //        System.out.println("-------------------------------");
     }
 
