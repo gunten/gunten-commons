@@ -1,6 +1,7 @@
 package DG;
 
 import java.util.*;
+import java.util.stream.Collectors;
 
 /**
  * 2024/4/28
@@ -43,13 +44,28 @@ public class DirectedGraph {
         }
     }
 
-
     public boolean hasRing() {
         onPath = new boolean[v];
         visited = new boolean[v];
         for (int i = 0; i < v; i++) {
             // 遍历图中的所有节点
-            traverseByDFS2(this.adj, i);
+            traverseByDFS(this.adj, i);
+        }
+        return hasCycle;
+    }
+
+    public boolean searchAllRings() {
+        onPath = new boolean[v];
+        visited = new boolean[v];
+        Set<Integer> set = new HashSet<>();
+
+        for (int i = 0; i < v; i++) {
+            postorder = new ArrayList<>();
+            // 节点没被遍历过，即独立一副图 才重复出发
+            if (!set.contains(i)) {
+                traverseByDFS2(this.adj, i);
+                set.addAll(postorder);
+            }
         }
         return hasCycle;
     }
@@ -77,6 +93,13 @@ public class DirectedGraph {
         return postorder;
     }
 
+    private void addRing (List ring) {
+        List<List<Integer>> collect = rings.stream().filter(list -> list.size() == ring.size()).collect(Collectors.toList());
+        if (collect.stream().noneMatch(list -> list.containsAll(ring))) {
+            rings.add(ring);
+        }
+    }
+
     /**
      * 找到所有环
      *
@@ -96,21 +119,17 @@ public class DirectedGraph {
                 ring.add(temp);
             } while (temp != s && i >= 0);
             Collections.reverse(ring);
-            rings.add(ring);
+            addRing(ring);
 
             return;
         }
 
         // 虽然访问过，但只要当前路径不存在就继续遍历
-        if (visited[s] && trace.contains(s)) {
+        if (!trace.contains(s) && visited[s]) {
             visited[s] = false;
         }
         if (visited[s]) {
-//            if (!trace.contains(s)) {
-//                visited[s] = false;
-//            } else {
-                return;
-//            }
+            return;
         }
 
         // 前序遍历代码位置
@@ -165,39 +184,48 @@ public class DirectedGraph {
     }
 
     public static void main(String[] args) {
-//        DirectedGraph ringGraph1 = DirectedGraph.createRingGraph1();
-//        ringGraph1.print();
-//        if (ringGraph1.hasRing()) {
-//            ringGraph1.rings.forEach(System.out::println);
-//            System.out.println();
-//        }
-//        System.out.println("-------------------------------");
+        DirectedGraph ringGraph1 = DirectedGraph.createRingGraph1();
+        ringGraph1.print();
+        if (ringGraph1.searchAllRings()) {
+            ringGraph1.rings.forEach(t -> System.out.print(t + "->"));
+            System.out.println();
+        }
+        System.out.println("-------------------------------");
 
         DirectedGraph ringGraph2 = DirectedGraph.createRingGraph2();
         ringGraph2.print();
-        if (ringGraph2.hasRing()) {
+        if (ringGraph2.searchAllRings()) {
             ringGraph2.rings.forEach(t -> System.out.print(t + "->"));
             System.out.println();
         }
         System.out.println("-------------------------------");
 
-//        DirectedGraph ringGraph3 = DirectedGraph.createRingGraph3();
-//        ringGraph3.print();
-//        if (ringGraph3.hasRing()) {
-//            ringGraph3.rings.forEach(t -> System.out.print(t + "->"));
-//            System.out.println();
-//        }
-//        System.out.println("-------------------------------");
 
-//        DirectedGraph dag1 = DirectedGraph.createDAG1();
-//        dag1.print();
-//        if (dag1.hasRing()) {
-//            dag1.rings.forEach(t -> System.out.print(t + "->"));
-//            System.out.println();
-//        } else {
-//            dag1.topologicalSortingByDFS().forEach(t -> System.out.print(t + "-"));
-//        }
-//        System.out.println("-------------------------------");
+        DirectedGraph ringGraph3 = DirectedGraph.createRingGraph3();
+        ringGraph3.print();
+        if (ringGraph3.searchAllRings()) {
+            ringGraph3.rings.forEach(t -> System.out.print(t + "->"));
+            System.out.println();
+        }
+        System.out.println("-------------------------------");
+
+        DirectedGraph ringGraph4 = DirectedGraph.createRingGraph4();
+        ringGraph4.print();
+        if (ringGraph4.searchAllRings()) {
+            ringGraph4.rings.forEach(t -> System.out.print(t + "->"));
+            System.out.println();
+        }
+        System.out.println("-------------------------------");
+
+        DirectedGraph dag1 = DirectedGraph.createDAG1();
+        dag1.print();
+        if (dag1.searchAllRings()) {
+            dag1.rings.forEach(t -> System.out.print(t + "->"));
+            System.out.println();
+        } else {
+            dag1.topologicalSortingByDFS().forEach(t -> System.out.print(t + "-"));
+        }
+        System.out.println("-------------------------------");
     }
 
     public static DirectedGraph createRingGraph1() {
@@ -237,6 +265,17 @@ public class DirectedGraph {
         dg.addEdge(8, 7);
         dg.addEdge(7, 6);
         dg.addEdge(6, 5);
+        return dg;
+    }
+
+    public static DirectedGraph createRingGraph4() {
+        DirectedGraph dg = new DirectedGraph(5);
+        dg.addEdge(0, 1);
+        dg.addEdge(1, 2);
+        dg.addEdge(2, 3);
+        dg.addEdge(3, 4);
+        dg.addEdge(2, 4);
+        dg.addEdge(4, 0);
         return dg;
     }
 
