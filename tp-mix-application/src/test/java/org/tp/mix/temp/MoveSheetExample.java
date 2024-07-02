@@ -1,8 +1,10 @@
 package org.tp.mix.temp;
 
+import org.apache.poi.hssf.usermodel.HSSFHyperlink;
 import org.apache.poi.hssf.usermodel.HSSFWorkbook;
 import org.apache.poi.ss.usermodel.*;
 import org.apache.poi.ss.util.CellRangeAddress;
+import org.apache.poi.xssf.usermodel.XSSFHyperlink;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 
 import java.io.FileInputStream;
@@ -16,11 +18,11 @@ public class MoveSheetExample {
     public static void main(String[] args) throws IOException {
 //        String sourceFilePath = "D:\\桌面\\生产日报基础数据-2024年06月02日.xlsx";
         String sourceFilePath = "D:\\桌面\\燃料日报-2024年06月02日.xlsx";
-        String targetFilePath = "D:\\桌面\\copy.xlsx";
+//        String sourceFilePath = "D:\\桌面\\配煤表-2024年06月02日.xlsx";
+        String targetFilePath = "D:\\桌面\\copy";
 
         // 读取源文件
         FileInputStream sourceFile = new FileInputStream(sourceFilePath);
-//        Workbook sourceWorkbook = new XSSFWorkbook(sourceFile);
         Workbook sourceWorkbook = WorkbookFactory.create(sourceFile);
 
         // 获取要移动的Sheet
@@ -29,14 +31,17 @@ public class MoveSheetExample {
             throw new RuntimeException("Sheet not found");
         }
 
-        // 创建目标文件（如果不存在会创建）
-        FileOutputStream targetFile = new FileOutputStream(targetFilePath);
+
         Workbook targetWorkbook;
         if (sourceWorkbook instanceof XSSFWorkbook) {
             targetWorkbook = new XSSFWorkbook();
+            targetFilePath += ".xlsx";
         } else {
             targetWorkbook = new HSSFWorkbook();
+            targetFilePath += ".xls";
         }
+        // 创建目标文件（如果不存在会创建）
+        FileOutputStream targetFile = new FileOutputStream(targetFilePath);
 
         // 复制Sheet到目标Workbook
         Sheet targetSheet = targetWorkbook.createSheet(sourceSheet.getSheetName());
@@ -97,9 +102,31 @@ public class MoveSheetExample {
     private static void copyCell(Cell sourceCell, Cell targetCell, Workbook sourceWorkbook, Workbook targetWorkbook) {
 
         // 复制单元格样式
-        CellStyle cellStyle2 = targetWorkbook.createCellStyle();
-        cellStyle2.cloneStyleFrom(sourceCell.getCellStyle());
-        targetCell.setCellStyle(cellStyle2);
+        CellStyle cellStyle = targetWorkbook.createCellStyle();
+        cellStyle.cloneStyleFrom(sourceCell.getCellStyle());
+        targetCell.setCellStyle(cellStyle);
+
+        //超链接也有两种版本
+        Hyperlink sourceHyperlink = sourceCell.getHyperlink();
+        if (sourceHyperlink != null) {
+
+            if (sourceHyperlink instanceof HSSFHyperlink) {
+                //TODO 会报错
+//                HSSFHyperlink link = (HSSFHyperlink) targetWorkbook.getCreationHelper().createHyperlink(sourceHyperlink.getType());
+                HSSFHyperlink link = (HSSFHyperlink) targetWorkbook.getCreationHelper().createHyperlink(sourceHyperlink.getType());
+
+                // 设置新超链接的目标地址
+                link.setAddress(sourceHyperlink.getAddress());
+
+                // 如果是电子邮件类型，设置邮箱和主题
+//                if (sourceHyperlink.getType() == HyperlinkType.EMAIL) {
+//                    link.setTextMark(((HSSFHyperlink) sourceHyperlink).getTextMark());
+//                }
+                targetCell.setHyperlink(link);
+            } else if (sourceHyperlink instanceof XSSFHyperlink) {
+                targetCell.setHyperlink(new XSSFHyperlink(sourceHyperlink));
+            }
+        }
         //不生效
 //        targetCell.getCellStyle().cloneStyleFrom(sourceCell.getCellStyle());
 
